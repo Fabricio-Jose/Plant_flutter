@@ -37,7 +37,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   //File ? myhomepage = null;
-  var myhomepage = File('w.jpeg');
+  var myhomepage = File('');
   final picker = ImagePicker();
 
   Future setImagen(op) async{
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       FormData formData = new FormData.fromMap({
         
-        'file': await MultipartFile.fromFile(
+        'image': await MultipartFile.fromFile(
           myhomepage.path, //filename: filename
         )
       });
@@ -92,9 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
       await dio.post('http://34.72.145.97/dataMqtt/register_image',
       data: formData).then((value){
         if(value.toString() == '1'){
-          print('La foto se subio');
+          print('Chale');
         }else{
-          print('chale');
+          print('Foto Enviada');
         }
       });
     
@@ -209,10 +209,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('Selecciona una Imagen'),
                 ),
                 SizedBox(height:30,),
+                
                 ElevatedButton(
-                  onPressed: (){
-                    subir_imagen();
-                  }, 
+                  onPressed: subir_imagen, 
                   child: Text('Subir una Imagen'),
                 ),
                 SizedBox(height:30,),
